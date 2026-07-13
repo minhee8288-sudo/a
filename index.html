@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도로로로록 - 뽀짝 소잉 기록</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- 귀여운 둥근 폰트(Jua)와 따뜻한 본문 폰트(Gowun Dodum) 로드 -->
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        oatmeal: '#FAF8F5',
+                        butter: '#FFD166',
+                        tangerine: '#F4A261',
+                        ink: '#3D3D3D',
+                    },
+                    fontFamily: {
+                        jua: ['Jua', 'sans-serif'],
+                        gowun: ['Gowun Dodum', 'sans-serif'],
+                    },
+                    animation: {
+                        'float-slow': 'float 4s ease-in-out infinite',
+                        'wiggle': 'wiggle 2s ease-in-out infinite',
+                        'spin-slow': 'spin 8s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FAF8F5;
+            color: #3D3D3D;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* 재봉선 효과 (스티치) */
+        .stitch-border {
+            border: 2px dashed #F4A261;
+            border-radius: 1rem;
+            position: relative;
+        }
+        
+        /* 안쪽 재봉선 효과 */
+        .stitch-inner {
+            outline: 2px dashed #FFD166;
+            outline-offset: -8px;
+            border-radius: inherit;
+        }
+
+        /* 다꾸 마스킹 테이프 효과 */
+        .masking-tape {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 80px;
+            height: 25px;
+            background-color: rgba(255, 209, 102, 0.7);
+            z-index: 10;
+        }
+
+        /* 형광펜 밑줄 효과 */
+        .highlight {
+            background: linear-gradient(to top, #FFD166 40%, transparent 40%);
+        }
+
+        /* 폴라로이드 사진 효과 */
+        .polaroid {
+            background: white;
+            padding: 12px 12px 40px 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        .polaroid:hover {
+            transform: translateY(-5px) scale(1.02) rotate(0deg) !important;
+            z-index: 20;
+        }
+    </style>
+</head>
+<body class="font-gowun selection:bg-butter selection:text-ink">
+
+    <!-- 스크롤 스티치 프로그레스 바 (화면 오른쪽) -->
+    <div class="fixed top-0 right-2 md:right-6 bottom-0 w-8 z-40 pointer-events-none">
+        <!-- 그려지는 스티치 선 (그라데이션으로 점선을 구현하여 스크롤 시 선이 깨지지 않고 자연스럽게 늘어남) -->
+        <div id="scroll-stitch-line" class="absolute top-0 left-1/2 -translate-x-1/2 w-[4px] transition-all duration-75 ease-out shadow-sm" 
+             style="height: 0%; background-image: repeating-linear-gradient(to bottom, #F4A261, #F4A261 12px, transparent 12px, transparent 24px);"></div>
+        <!-- 바늘 -->
+        <div id="scroll-needle" class="absolute left-1/2 text-3xl transition-all duration-75 ease-out drop-shadow-md" 
+             style="top: 0%; transform: translateX(-50%); margin-top: -5px;">
+            🪡
+        </div>
+    </div>
+
+    <nav class="fixed top-0 w-full p-4 z-50 backdrop-blur-sm bg-oatmeal/80 border-b border-tangerine/20">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div class="font-jua text-2xl text-tangerine flex items-center gap-2">
+                <span class="animate-spin-slow inline-block">🧵</span> 도로로로록
+            </div>
+            <div class="hidden sm:flex gap-6 font-jua text-ink/80 text-lg">
+                <a href="#intro" class="hover:text-tangerine transition-colors">시작</a>
+                <a href="#about" class="hover:text-tangerine transition-colors">몰입</a>
+                <a href="#features" class="hover:text-tangerine transition-colors">가내수공업</a>
+                <a href="#gallery" class="hover:text-tangerine transition-colors">갤러리</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="intro" class="min-h-screen flex flex-col justify-center items-center relative px-6 pt-20">
+        <!-- 배경 데코 요소 -->
+        <div class="absolute top-1/4 left-10 md:left-1/4 text-5xl opacity-50 animate-float-slow">✂️</div>
+        <div class="absolute bottom-1/4 right-10 md:right-1/4 text-6xl opacity-40 animate-wiggle" style="animation-delay: 1s;">🧶</div>
+        
+        <div class="max-w-6xl w-full mx-auto flex flex-col md:flex-row items-center justify-between gap-12 z-10">
+            
+            <!-- 텍스트 영역 (왼쪽 정렬) -->
+            <div class="w-full md:w-1/2 text-center md:text-left">
+                <div class="inline-block bg-butter text-ink font-jua px-4 py-2 rounded-full mb-6 text-sm md:text-base stitch-inner shadow-sm transform -rotate-2">
+                    내가 기획하고 내가 쓴다! 100% 실용주의 뽀짝 소잉 기록 🧵
+                </div>
+                
+                <h1 class="font-jua text-5xl md:text-7xl mb-6 text-ink leading-tight">
+                    앗, 내 취미가 <br class="md:hidden"> 뭐였더라? <span class="inline-block animate-bounce">🤔</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-ink/80 mb-10 max-w-xl mx-auto md:mx-0 leading-relaxed">
+                    텅 빈 취미칸을 채우기 위한 웃픈 시작.<br>
+                    손재주 없어도 괜찮아, <span class="highlight font-bold px-1">사부작거리는 마음</span> 하나면 충분해!
+                </p>
+                
+                <a href="#about" class="inline-block font-jua bg-tangerine text-white px-8 py-4 rounded-full text-xl hover:bg-orange-500 transition-all hover:shadow-lg hover:-translate-y-1">
+                    먼지 털고 시작하기 💨
+                </a>
+            </div>
+
+            <!-- 깔끔하고 따뜻한 무드의 핑크 재봉틀 일러스트 영역 (오른쪽) -->
+            <div class="w-full md:w-1/2 flex justify-center md:justify-end">
+                <div class="relative w-72 h-72 md:w-[28rem] md:h-[28rem]">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-xl">
+                        <!-- 따뜻한 그림자 -->
+                        <ellipse cx="100" cy="155" rx="85" ry="8" fill="#E2DED9" opacity="0.6" />
+
+                        <!-- 뒤쪽 원단 -->
+                        <path d="M 25 145 Q 45 135 65 145 L 80 155 Q 50 160 30 155 Z" fill="#FFD166" opacity="0.5"/>
+
+                        <!-- 재봉틀 베이스 하단 -->
+                        <rect x="20" y="140" width="160" height="12" rx="3" fill="#EAD8C8" />
+                        <!-- 재봉틀 베이스 상단 (재봉판) -->
+                        <rect x="25" y="137" width="115" height="3" rx="1" fill="#F8FAFC" />
+
+                        <!-- 재봉틀 메인 바디 (깔끔한 곡선) -->
+                        <path d="
+                            M 140 140
+                            V 50
+                            A 20 20 0 0 0 120 30
+                            H 60
+                            A 20 20 0 0 0 40 50
+                            V 100
+                            A 10 10 0 0 0 50 110
+                            H 70
+                            A 10 10 0 0 0 80 100
+                            V 75
+                            A 10 10 0 0 1 90 65
+                            H 110
+                            A 10 10 0 0 1 120 75
+                            V 140
+                            Z
+                        " fill="#FFC4D1" />
+                        
+                        <!-- 바디 하이라이트 (입체감 부여) -->
+                        <path d="
+                            M 40 50
+                            A 20 20 0 0 1 60 30
+                            H 120
+                            A 20 20 0 0 1 140 50
+                            V 55
+                            A 20 20 0 0 0 120 35
+                            H 60
+                            A 20 20 0 0 0 40 55
+                            Z
+                        " fill="#FFFFFF" opacity="0.4" />
+
+                        <!-- 우측 핸드휠 (돌림바퀴) -->
+                        <circle cx="145" cy="70" r="22" fill="#FFB3C6" />
+                        <circle cx="145" cy="70" r="15" fill="#FFE2E8" />
+                        <circle cx="145" cy="70" r="5" fill="#FFF" />
+                        <!-- 핸드휠 디테일 선 -->
+                        <line x1="145" y1="55" x2="145" y2="85" stroke="#FFC4D1" stroke-width="2" />
+                        <line x1="130" y1="70" x2="160" y2="70" stroke="#FFC4D1" stroke-width="2" />
+
+                        <!-- 상단 실타래 핀 & 실 -->
+                        <rect x="95" y="15" width="4" height="15" fill="#CBD5E1" />
+                        <rect x="87" y="18" width="20" height="14" rx="2" fill="#FFD166" />
+                        <line x1="87" y1="22" x2="107" y2="22" stroke="#F4A261" stroke-width="1.5" />
+                        <line x1="87" y1="26" x2="107" y2="26" stroke="#F4A261" stroke-width="1.5" />
+                        
+                        <!-- 실패에서 내려오는 실선 (따뜻한 옐로우) -->
+                        <path d="M 87 25 Q 70 25 45 45 V 95" fill="none" stroke="#FFD166" stroke-width="1.5" stroke-dasharray="3 2"/>
+
+                        <!-- 정면 다이얼 패널 -->
+                        <!-- 큰 다이얼 -->
+                        <circle cx="130" cy="105" r="14" fill="#FFF" />
+                        <circle cx="130" cy="105" r="10" fill="#FDF8F5" />
+                        <line x1="130" y1="105" x2="136" y2="99" stroke="#FFB3C6" stroke-width="2.5" stroke-linecap="round" />
+                        
+                        <!-- 작은 버튼들 -->
+                        <circle cx="95" cy="48" r="5" fill="#FFF" />
+                        <circle cx="110" cy="48" r="5" fill="#FFF" />
+                        <rect x="45" y="65" width="15" height="4" rx="2" fill="#FFF" opacity="0.8" />
+
+                        <!-- 바늘 뭉치 및 노루발 영역 -->
+                        <rect x="52" y="110" width="8" height="18" rx="2" fill="#E2E8F0" />
+                        <line x1="56" y1="128" x2="56" y2="137" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" />
+                        <rect x="50" y="135" width="12" height="3" rx="1" fill="#CBD5E1" />
+
+                        <!-- 박음질 중인 앞쪽 원단 -->
+                        <path d="M 20 140 Q 38 138 56 140 Q 80 142 110 140" fill="none" stroke="#F4A261" stroke-width="5" stroke-linecap="round" />
+                        <!-- 실제 박음질 스티치 선 -->
+                        <path d="M 20 140 L 56 140" fill="none" stroke="#3D3D3D" stroke-width="2" stroke-dasharray="5,4" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 px-6 bg-white relative">
+        <!-- 물결 모양 상단/하단 테두리를 CSS로 간단히 표현하기 위해 배경색 분리 -->
+        <div class="max-w-4xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                
+                <!-- 다꾸 스타일 이미지 영역 -->
+                <div class="w-full md:w-1/2 relative p-4">
+                    <div class="masking-tape"></div>
+                    <div class="polaroid transform rotate-3">
+                        <!-- Placeholder 이미지 (재봉틀 연상) -->
+                        <img src="https://placehold.co/600x500/FAF8F5/F4A261?text=Sewing+Machine\n+Drrrrr-!" alt="재봉틀" class="w-full rounded-sm object-cover aspect-[4/3]">
+                        <div class="text-center font-jua text-xl mt-4 text-ink/70">
+                            딴생각 제로존 🚨
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 텍스트 영역 -->
+                <div class="w-full md:w-1/2">
+                    <h2 class="font-jua text-4xl mb-6 flex items-center gap-3">
+                        먼지 털고 드르륵-! 🧵
+                    </h2>
+                    <div class="space-y-4 text-lg leading-relaxed bg-oatmeal p-6 rounded-2xl stitch-inner">
+                        <p>
+                            방구석 한 켠에 고이 모셔둔 재봉틀.<br>
+                            콜록콜록 먼지 털고 일어난 <strong class="text-tangerine">현실 공감 100% 스토리</strong>가 시작됩니다.
+                        </p>
+                        <p>
+                            잡념은 훌훌 털어버리고, 오직 바늘 끝에만 집중하는 시간. 
+                            윙윙 돌아가는 재봉틀 소리에 맞춰 내 마음도 평온해지는 마법을 경험해보세요.
+                        </p>
+                        <p class="font-jua text-tangerine text-xl mt-4">
+                            #몰입의_쾌감 #딴생각_금지
+                        </p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-24 px-6 relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-jua text-4xl md:text-5xl mb-4">
+                    사부작사부작, <br class="md:hidden">100% 방구석 가내수공업 ✂️
+                </h2>
+                <p class="text-lg text-ink/70">다이어리 꾸미듯 내 맘대로 채워가는 소잉 라이프</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 카드 1 -->
+                <div class="bg-white p-8 rounded-3xl stitch-border hover:shadow-xl transition-shadow group transform hover:-translate-y-2 duration-300">
+                    <div class="text-5xl mb-6 group-hover:scale-110 transition-transform origin-left">📏</div>
+                    <h3 class="font-jua text-2xl mb-4">기획부터 재단까지 내 맘대로</h3>
+                    <p class="text-ink/80 leading-relaxed">
+                        삐뚤빼뚤해도 괜찮아요. 내가 쓸 거니까요! 
+                        어떤 원단을 쓸지, 어떤 모양으로 만들지 <span class="highlight">100% 내 취향</span>을 듬뿍 담아 기획합니다. 
+                        세상에 단 하나뿐인 나만의 아이템 탄생 과정!
+                    </p>
+                </div>
+
+                <!-- 카드 2 -->
+                <div class="bg-white p-8 rounded-3xl stitch-border hover:shadow-xl transition-shadow group transform hover:-translate-y-2 duration-300">
+                    <div class="text-5xl mb-6 group-hover:scale-110 transition-transform origin-left">💸</div>
+                    <h3 class="font-jua text-2xl mb-4">귀여운 개미지옥의 시작</h3>
+                    <p class="text-ink/80 leading-relaxed">
+                        분명 시작은 가성비였는데...? 예쁜 원단, 부자재, 라벨까지 사다 보면 어느새 장바구니 한가득!
+                        하지만 <span class="highlight">소소한 탕진잼</span>이 주는 확실한 행복. 은근히 돈 드는 귀여운 개미지옥에 오신 걸 환영합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-24 px-6 bg-butter/20">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-jua text-4xl md:text-5xl mb-4">
+                    짜잔! ✨ 나만의 뽀짝 갤러리
+                </h2>
+                <p class="text-lg text-ink/70">매일 나와 함께하는 작고 귀여운 성취들</p>
+            </div>
+
+            <!-- 다꾸 느낌의 갤러리 그리드 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 px-4">
+                
+                <!-- 사진 1 -->
+                <div class="relative">
+                    <div class="masking-tape" style="background-color: rgba(244, 162, 97, 0.7); transform: translateX(-50%) rotate(3deg);"></div>
+                    <div class="polaroid transform -rotate-2">
+                        <img src="https://placehold.co/400x400/FAF8F5/3D3D3D?text=Pouch" alt="파우치" class="w-full rounded-sm object-cover aspect-square">
+                        <div class="text-center font-jua text-xl mt-4 text-ink">
+                            삐뚤빼뚤 첫 파우치 👝
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 사진 2 -->
+                <div class="relative">
+                    <div class="masking-tape" style="transform: translateX(-50%) rotate(-1deg);"></div>
+                    <div class="polaroid transform rotate-1 mt-4 md:mt-12">
+                        <img src="https://placehold.co/400x400/FFD166/3D3D3D?text=Tote+Bag" alt="토트백" class="w-full rounded-sm object-cover aspect-square">
+                        <div class="text-center font-jua text-xl mt-4 text-ink">
+                            동네 마실용 토트백 🛍️
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 사진 3 -->
+                <div class="relative">
+                    <div class="masking-tape" style="background-color: rgba(244, 162, 97, 0.7); transform: translateX(-50%) rotate(2deg);"></div>
+                    <div class="polaroid transform rotate-3 sm:mt-8">
+                        <img src="https://placehold.co/400x400/F4A261/FAF8F5?text=Scrunchie" alt="곱창밴드" class="w-full rounded-sm object-cover aspect-square">
+                        <div class="text-center font-jua text-xl mt-4 text-ink">
+                            자투리 천의 기적 ✨
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-20">
+                 <button class="font-jua bg-ink text-white px-8 py-4 rounded-full text-xl hover:bg-gray-800 transition-all hover:shadow-lg flex items-center gap-2 mx-auto">
+                    나도 사부작 시작해볼까? <span class="animate-bounce">👇</span>
+                 </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-oatmeal py-12 text-center border-t border-tangerine/20 mt-10">
+        <div class="font-jua text-2xl text-tangerine mb-4">
+            <span class="inline-block animate-wiggle">🧵</span> 도로로로록
+        </div>
+        <p class="text-ink/60 text-sm mb-4">
+            방구석 가내수공업자들을 위한 작고 귀여운 기록장<br>
+            © 2026 100% 실용주의 뽀짝 소잉 기록. All rights reserved.
+        </p>
+        <div class="flex justify-center gap-4 text-2xl">
+            <!-- 소셜 아이콘 플레이스홀더 (이모지로 대체) -->
+            <a href="#" class="hover:-translate-y-1 transition-transform opacity-70 hover:opacity-100">📱</a>
+            <a href="#" class="hover:-translate-y-1 transition-transform opacity-70 hover:opacity-100">📸</a>
+            <a href="#" class="hover:-translate-y-1 transition-transform opacity-70 hover:opacity-100">💌</a>
+        </div>
+    </footer>
+
+    <script>
+        // 스크롤 시 왼쪽에 스티치(재봉선)가 길어지는 프로그레스 바 효과
+        document.addEventListener('DOMContentLoaded', () => {
+            const stitchLine = document.getElementById('scroll-stitch-line');
+            const needle = document.getElementById('scroll-needle');
+
+            window.addEventListener('scroll', () => {
+                // 현재 스크롤 위치 계산
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                // 전체 문서 높이에서 창 높이를 뺀 값 (실제 스크롤 가능한 영역)
+                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                
+                if (docHeight > 0) {
+                    // 스크롤 퍼센트 계산 (0 ~ 100)
+                    let scrollPercent = (scrollTop / docHeight) * 100;
+                    
+                    // 모바일 스크롤 바운스 효과 등으로 100%를 초과하거나 0% 미만이 되는 것 방지
+                    scrollPercent = Math.max(0, Math.min(100, scrollPercent));
+                    
+                    // 스티치 선의 높이와 바늘의 위치 업데이트
+                    stitchLine.style.height = `${scrollPercent}%`;
+                    needle.style.top = `${scrollPercent}%`;
+                }
+            });
+            
+            // 페이지 로드 시 스크롤 위치에 맞게 초기화
+            window.dispatchEvent(new Event('scroll'));
+        });
+    </script>
+</body>
+</html>
