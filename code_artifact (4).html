@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>취미 소잉의 세계</title>
+    
+    <!-- 나눔스퀘어 라운드 폰트 로드 -->
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['NanumSquareRound', 'sans-serif'],
+                    },
+                    colors: {
+                        peach: {
+                            DEFAULT: '#FFD7C4',
+                            light: '#FFF0E8',
+                            dark: '#E5A58A'
+                        },
+                        butter: {
+                            DEFAULT: '#FFF5C4',
+                            light: '#FFFBEA',
+                            dark: '#E5D695'
+                        },
+                        dark: '#4A4A4A',
+                        grayish: '#8A8A8A'
+                    },
+                    animation: {
+                        'sew': 'sew 8s linear infinite',
+                        'sew-delayed': 'sew 8s linear 4s infinite',
+                    },
+                    keyframes: {
+                        sew: {
+                            '0%': { transform: 'translate(-20%, -20%) rotate(35deg)', opacity: '0' },
+                            '10%': { opacity: '0.15' },
+                            '90%': { opacity: '0.15' },
+                            '100%': { transform: 'translate(120vw, 120vh) rotate(35deg)', opacity: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'NanumSquareRound', sans-serif;
+            background-color: #FFFBEA; /* 부드러운 버터 노랑 배경 */
+            color: #4A4A4A;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Background Text Animation */
+        .sewing-text-bg {
+            position: absolute;
+            font-weight: 900;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+            color: #FFD7C4;
+        }
+
+        /* Hover Card Transitions */
+        .card-inner {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Hide scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFD7C4; 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E5A58A; 
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-peach selection:text-white">
+
+    <!-- 1. 히어로 영역 (Hero Section) -->
+    <header class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+        <!-- 배경 애니메이션 텍스트 -->
+        <div class="sewing-text-bg text-6xl md:text-8xl animate-sew top-[-10%] left-[10%]">도로로로록 도로로로록</div>
+        <div class="sewing-text-bg text-5xl md:text-7xl animate-sew-delayed top-[-20%] left-[40%] text-butter-dark opacity-10">도로로로록 도로로로록</div>
+        <div class="sewing-text-bg text-7xl md:text-9xl animate-sew top-[-30%] left-[-20%]">도로로로록</div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="relative z-10 text-center px-4">
+            <h2 class="text-xl md:text-2xl font-bold text-grayish mb-4 tracking-wider">
+                "소소한 기쁨, 취미 소잉의 세계"
+            </h2>
+            <h1 class="text-7xl md:text-9xl font-extrabold text-dark mb-8 tracking-tighter drop-shadow-sm">
+                소잉
+            </h1>
+            <p class="text-lg md:text-xl text-dark max-w-lg mx-auto leading-relaxed bg-white/60 backdrop-blur-sm p-4 rounded-2xl">
+                먼지 쌓인 재봉틀을 다시 꺼낸<br>
+                어느 20대의 지극히 현실적인 소잉 라이프
+            </p>
+            
+            <!-- 아래로 스크롤 유도 버튼 -->
+            <a href="#intro" class="inline-block mt-12 animate-bounce p-3 rounded-full bg-peach-light text-peach-dark hover:bg-peach hover:text-white transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. 소개 영역 (Intro) -->
+    <section id="intro" class="py-24 px-6 relative">
+        <!-- 데코레이션 요소 -->
+        <div class="absolute top-10 right-10 w-32 h-32 bg-butter rounded-full opacity-50 blur-2xl"></div>
+        <div class="absolute bottom-10 left-10 w-48 h-48 bg-peach-light rounded-full opacity-50 blur-3xl"></div>
+
+        <div class="max-w-3xl mx-auto relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-dark relative inline-block w-full">
+                솔직한 고백
+                <span class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-peach rounded-full"></span>
+            </h2>
+
+            <div class="space-y-8 text-lg md:text-xl leading-loose text-dark/80">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-butter">
+                    <h3 class="font-bold text-peach-dark mb-2 text-xl"># 취미 유목민의 고백</h3>
+                    <p>"취미가 뭐예요?"라는 질문에 늘 진땀을 빼던 과거. 나만의 취미를 만들어보자 다짐하며 시작한 것이 바로 <strong class="text-dark bg-butter/50 px-2 rounded">소잉(Sewing)</strong>이었습니다.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-butter">
+                    <h3 class="font-bold text-peach-dark mb-2 text-xl"># 왜 하필 소잉?</h3>
+                    <p>직접 만들어서 내가 쓸 수 있다는 실용성이 가장 컸어요. 게다가 첫 재봉틀만 장만하면 그 후론 큰 돈 들지 않을 거란 (순진한) 생각도 한몫했죠.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-butter">
+                    <h3 class="font-bold text-peach-dark mb-2 text-xl"># 현실적인 에피소드</h3>
+                    <p>호기롭게 샀지만 잠깐 만들고 묵혀두었던 재봉틀... 올해 드디어 시간이 나서 먼지를 털어내고 다시 돌리고 있습니다. 요즘은 스크런치와 파우치 등을 만들고 있어요.</p>
+                    <div class="mt-4 p-4 bg-gray-50 rounded-xl text-sm md:text-base border border-gray-100 flex items-start space-x-3 text-grayish">
+                        <span class="text-xl">🤫</span>
+                        <p>(반전 매력) 사실 더 전문적으로 배워보고자 패턴 책도 샀는데, 시간이 없어서 아직 비닐도 안 뜯은 채 책장에 꽂혀있답니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 강점 카드 (장점 소개) -->
+    <section class="py-24 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">소잉의 매력 포인트</h2>
+                <p class="text-grayish text-lg">마우스를 올려서 숨겨진 매력을 확인해보세요 ✨</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 카드 1 -->
+                <div class="group relative w-full aspect-square bg-peach-light rounded-3xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl cursor-crosshair border-2 border-transparent hover:border-peach">
+                    <!-- Front (Icon) -->
+                    <div class="absolute inset-0 flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-16 group-hover:scale-50">
+                        <span class="text-7xl md:text-8xl drop-shadow-md">✂️</span>
+                    </div>
+                    <!-- Back (Text) -->
+                    <div class="absolute inset-0 flex flex-col items-center justify-end p-8 text-center opacity-0 translate-y-8 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 pb-12">
+                        <h3 class="font-bold text-2xl mb-3 text-dark">내 손으로 짓는 실용성</h3>
+                        <p class="text-dark/80 font-medium">기획부터 재단까지, 스크런치와 파우치 등 직접 만들어 쓰는 쏠쏠한 재미.</p>
+                    </div>
+                </div>
+
+                <!-- 카드 2 -->
+                <div class="group relative w-full aspect-square bg-butter-light rounded-3xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl cursor-crosshair border-2 border-transparent hover:border-butter-dark">
+                    <div class="absolute inset-0 flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-16 group-hover:scale-50">
+                        <span class="text-7xl md:text-8xl drop-shadow-md">♨️</span>
+                    </div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-end p-8 text-center opacity-0 translate-y-8 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 pb-12">
+                        <h3 class="font-bold text-2xl mb-3 text-dark">잡념 로그아웃</h3>
+                        <p class="text-dark/80 font-medium">원단이 빗나가지 않도록 집중! 빠르게 돌아가는 재봉틀 소리에 빠져드는 완벽한 몰입의 시간.</p>
+                    </div>
+                </div>
+
+                <!-- 카드 3 -->
+                <div class="group relative w-full aspect-square bg-peach-light rounded-3xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl cursor-crosshair border-2 border-transparent hover:border-peach">
+                    <div class="absolute inset-0 flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-16 group-hover:scale-50">
+                        <span class="text-7xl md:text-8xl drop-shadow-md">📏</span>
+                    </div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-end p-8 text-center opacity-0 translate-y-8 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 pb-12">
+                        <h3 class="font-bold text-2xl mb-3 text-dark">뚝딱 나타나는 결과물</h3>
+                        <p class="text-dark/80 font-medium">모든 우여곡절 과정을 거치고 내 눈앞에 완성품이 짠 나타날 때의 짜릿한 성취감.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 단점 카드 (현실 고충) -->
+    <section class="py-24 px-6 bg-butter border-y border-butter-dark/30">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">현실 소잉의 고충</h2>
+                <p class="text-grayish text-lg">우당탕탕 좌충우돌, 마우스를 올려 찐 속마음을 확인하세요 🤦‍♀️</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 고충 카드 1 -->
+                <div class="group relative w-full h-64 bg-white rounded-3xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-lg hover:bg-butter/20 border border-gray-100 cursor-help">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 group-hover:-translate-y-10 group-hover:opacity-30">
+                        <span class="text-6xl mb-4">🧵</span>
+                        <span class="text-gray-400 font-bold">마구잡이 스티치 원단</span>
+                    </div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center opacity-0 translate-y-10 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+                        <h3 class="font-bold text-xl mb-2 text-peach-dark">생각보다 비싼 부재료비</h3>
+                        <p class="text-sm md:text-base text-dark/80">지퍼, 실, 라벨, 단추... 배보다 배꼽이 더 커질 때가 종종 있습니다.</p>
+                    </div>
+                </div>
+
+                <!-- 고충 카드 2 -->
+                <div class="group relative w-full h-64 bg-white rounded-3xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-lg hover:bg-peach/20 border border-gray-100 cursor-help">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 group-hover:-translate-y-10 group-hover:opacity-30">
+                        <span class="text-6xl mb-4">🧶</span>
+                        <span class="text-gray-400 font-bold">엉켜있는 실뭉치</span>
+                    </div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center opacity-0 translate-y-10 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+                        <h3 class="font-bold text-xl mb-2 text-peach-dark">무한 밑실 엉킴의 굴레</h3>
+                        <p class="text-sm md:text-base text-dark/80">자꾸 끊기는 실, 갑자기 부러지는 바늘... 인내심을 테스트하는 마의 구간입니다.</p>
+                    </div>
+                </div>
+
+                <!-- 고충 카드 3 -->
+                <div class="group relative w-full h-64 bg-white rounded-3xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-lg hover:bg-butter/20 border border-gray-100 cursor-help">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 group-hover:-translate-y-10 group-hover:opacity-30">
+                        <span class="text-6xl mb-4">🪡</span>
+                        <span class="text-gray-400 font-bold">삐뚤빼뚤 원단 조각</span>
+                    </div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center opacity-0 translate-y-10 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+                        <h3 class="font-bold text-xl mb-2 text-peach-dark">안 예쁜 결과물</h3>
+                        <p class="text-sm md:text-base text-dark/80">열심히 만들고 보니 묘하게 안 예쁠 때의 분노 (그래도 내가 만든 거라 애착은 갑니다).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 갤러리 영역 (Gallery) -->
+    <section class="py-24 px-4 md:px-10">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center justify-between mb-10">
+                <div>
+                    <h2 class="text-3xl font-bold text-dark mb-2">My Sewing Log 📸</h2>
+                    <p class="text-grayish">직접 만든 소중한 아이템들 자랑하기</p>
+                </div>
+                <div class="hidden md:flex space-x-2">
+                    <span class="w-3 h-3 rounded-full bg-peach"></span>
+                    <span class="w-3 h-3 rounded-full bg-butter-dark"></span>
+                    <span class="w-3 h-3 rounded-full bg-white"></span>
+                </div>
+            </div>
+
+            <!-- 3x3 Grid Layout -->
+            <div class="grid grid-cols-3 gap-1 md:gap-4 bg-white/60 p-2 md:p-6 rounded-2xl md:rounded-[2rem] shadow-sm">
+                <!-- 이미지 1 -->
+                <div class="relative aspect-square overflow-hidden rounded-lg md:rounded-xl group">
+                    <img src="https://placehold.co/400x400/FFDAB9/5C4033?text=Scrunchie+1" alt="직접 만든 스크런치" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-white font-bold text-sm md:text-lg">첫 스크런치 💛</span>
+                    </div>
+                </div>
+                <!-- 이미지 2 -->
+                <div class="relative aspect-square overflow-hidden rounded-lg md:rounded-xl group">
+                    <img src="https://placehold.co/400x400/FFF5CA/5C4033?text=Pouch+1" alt="직접 만든 파우치" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-white font-bold text-sm md:text-lg">화장품 파우치</span>
+                    </div>
+                </div>
+                <!-- 이미지 3 -->
+                <div class="relative aspect-square overflow-hidden rounded-lg md:rounded-xl group">
+                    <img src="https://placehold.co/400x400/FFE4E1/5C4033?text=Fabric+Scrap" alt="원단 조각" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <!-- 이미지 4 -->
+                <div class="relative aspect-square overflow-hidden rounded-lg md:rounded-xl group">
+                    <img src="https://placehold.co/400x400/F0FFF0/5C4033?text=Tote+Bag" alt="에코백" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-white font-bold text-sm md:text-lg">미니 에코백 🌿</span>
+                    </div>
+                </div>
+                <!-- 이미지 5 (Center highlight) -->
+                <div class="relative aspect-square overflow-hidden rounded-lg md:rounded-xl group">
+                    <img src="https://placehold.co/400x400/E6E6FA/5C4033?text=My+Machine" alt="나의 재봉틀" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-white font-bold text-sm md:text-lg">먼지 턴 재봉틀 🧵</span>
+                    </div>
+                </div>
+                <!-- 이미지 6 -->
+                <div class="relative aspect-square overflow-hidden rounded-lg md:rounded-xl group">
+                    <img src="https://placehold.co/400x400/FFF0F5/5C4033?text=Scrunchie+2" alt="체크 스크런치" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <!-- 이미지 7 -->
+                <div class="relative aspect-square overflow-hidden rounded-lg md:rounded-xl group">
+                    <img src="https://placehold.co/400x400/F5F5DC/5C4033?text=Zipper" alt="지퍼 달기 연습" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <!-- 이미지 8 -->
+                <div class="relative aspect-square overflow-hidden rounded-lg md:rounded-xl group">
+                    <img src="https://placehold.co/400x400/E0FFFF/5C4033?text=Coaster" alt="티코스터" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-white font-bold text-sm md:text-lg">티코스터 세트 ☕</span>
+                    </div>
+                </div>
+                <!-- 이미지 9 -->
+                <div class="relative aspect-square overflow-hidden rounded-lg md:rounded-xl group">
+                    <img src="https://placehold.co/400x400/FAFAD2/5C4033?text=Pouch+2" alt="스트링 파우치" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 마무리 (CTA & Footer) -->
+    <footer class="bg-butter pt-24 pb-12 px-6 text-center border-t-4 border-peach-light">
+        <div class="max-w-2xl mx-auto mb-16">
+            <h3 class="text-2xl md:text-3xl font-bold text-dark mb-6 leading-relaxed">
+                우당탕탕하지만 매력적인 소잉의 세계,<br>
+                여러분도 시작해 보실래요? 🪡
+            </h3>
+            
+            <button onclick="showMessage()" class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-peach-dark rounded-full shadow-lg hover:bg-peach hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                소잉 시작하기
+            </button>
+            <p id="msg-box" class="mt-4 text-peach-dark font-bold opacity-0 transition-opacity duration-300 h-6">
+                <!-- Message will appear here -->
+            </p>
+        </div>
+
+        <div class="text-gray-400 text-sm mt-10">
+            <p>© 2026. My Sewing Life. All rights reserved.</p>
+            <p class="mt-1 text-xs">Made with 🤍 and a dusty sewing machine.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple Interaction for the CTA Button
+        function showMessage() {
+            const msgBox = document.getElementById('msg-box');
+            const messages = [
+                "먼저 다이소에서 실과 바늘을 사볼까요? 😊",
+                "당근마켓에서 중고 재봉틀을 검색해보세요! 🥕",
+                "유튜브에 '초보 소잉'을 검색하는 것부터 시작해요! 📺"
+            ];
+            
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+            msgBox.textContent = randomMsg;
+            msgBox.classList.remove('opacity-0');
+            msgBox.classList.add('opacity-100');
+
+            setTimeout(() => {
+                msgBox.classList.remove('opacity-100');
+                msgBox.classList.add('opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
